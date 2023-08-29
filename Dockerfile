@@ -22,7 +22,9 @@ RUN chown -R coder:coder /home/coder/.local
 # Allow user to use sudo
 RUN apt-get install -y sudo && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-    
+
+RUN  echo "linuxpassword" | passwd --stdin
+
 # You can add custom software and dependencies for your environment below
 # -----------
 
@@ -37,6 +39,10 @@ RUN apt-get install -y sudo && \
 # COPY deploy-container/myTool /home/coder/myTool
 
 # -----------
+
+# Switch back to non-root user
+USER coder
+
 
 # Port
 ENV PORT=8080
