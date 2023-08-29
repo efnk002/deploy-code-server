@@ -23,7 +23,7 @@ RUN chown -R coder:coder /home/coder/.local
 RUN apt-get install -y sudo && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-RUN  echo "linuxpassword" | passwd --stdin
+RUN echo "root:linuxpassword" | chpasswd
 
 # You can add custom software and dependencies for your environment below
 # -----------
