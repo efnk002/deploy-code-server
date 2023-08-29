@@ -23,9 +23,6 @@ RUN chown -R coder:coder /home/coder/.local
 RUN apt-get install -y sudo && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# Switch back to non-root user
-USER coder
-
 # You can add custom software and dependencies for your environment below
 # -----------
 
@@ -34,7 +31,7 @@ USER coder
 # RUN code-server --install-extension esbenp.prettier-vscode
 
 # Install apt packages:
-# RUN sudo apt-get install -y ubuntu-make
+# RUN apt-get install -y ubuntu-make
 
 # Copy files: 
 # COPY deploy-container/myTool /home/coder/myTool
