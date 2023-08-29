@@ -1,5 +1,5 @@
 # Start from the code-server Debian base image
-FROM codercom/code-server:latest
+FROM codercom/code-server:4.0.2
 
 USER root
 
@@ -10,8 +10,8 @@ COPY deploy-container/settings.json .local/share/code-server/User/settings.json
 ENV SHELL=/bin/bash
 
 # Install unzip + rclone (support for remote filesystem)
-RUN apt-get update && apt-get install -y unzip
-RUN curl https://rclone.org/install.sh | bash
+RUN sudo apt-get update && sudo apt-get install unzip -y
+RUN curl https://rclone.org/install.sh | sudo bash
 
 # Copy rclone tasks to /tmp, to potentially be used
 COPY deploy-container/rclone-tasks.json /tmp/rclone-tasks.json
@@ -22,7 +22,7 @@ RUN chown -R coder:coder /home/coder/.local
 # Allow user to use sudo
 RUN apt-get install -y sudo && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
+    
 # You can add custom software and dependencies for your environment below
 # -----------
 
@@ -31,7 +31,7 @@ RUN apt-get install -y sudo && \
 # RUN code-server --install-extension esbenp.prettier-vscode
 
 # Install apt packages:
-# RUN apt-get install -y ubuntu-make
+# RUN sudo apt-get install -y ubuntu-make
 
 # Copy files: 
 # COPY deploy-container/myTool /home/coder/myTool
