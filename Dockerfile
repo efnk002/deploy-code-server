@@ -40,9 +40,6 @@ RUN echo "root:linuxpassword" | chpasswd
 
 # -----------
 
-# Switch back to non-root user
-USER coder
-
 
 # Port
 ENV PORT=8080
